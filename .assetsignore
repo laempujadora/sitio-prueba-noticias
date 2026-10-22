@@ -1,0 +1,8 @@
+CLAUDE.md
+LEEME.md
+.pages.yml
+wrangler.jsonc
+.assetsignore
+.git
+.wrangler
+node_modules

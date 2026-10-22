@@ -1,0 +1,11 @@
+// Configuración de Cloudflare: sitio estático servido desde la raíz del repo.
+{
+  "name": "sitio-prueba-noticias",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "none"
+  },
+  // Necesario para las vistas previas por rama (npx wrangler preview)
+  "previews": {}
+}
