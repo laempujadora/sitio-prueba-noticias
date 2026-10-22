@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "esta-web-se-actualiza-sola",
+    "titulo": "Esta web se actualiza sola: probamos Pages CMS y Claude",
+    "fecha": "2026-10-21",
+    "categoria": "Novedades",
+    "destacada": true,
+    "portada": "img/noticias/cms-y-claude.jpg",
+    "bajada": "Armamos este sitio para probar dos formas de cargar noticias sin tocar código: un panel con formulario y un chat con Claude que publica por vos.",
+    "cuerpo": "<p>Cada noticia que ves acá sale de un solo archivo de datos. El diseño no se toca: lo que cambia es el contenido, y se puede cargar de dos maneras.</p><h2>Opción 1: el panel</h2><p>Entrás a Pages CMS con tu cuenta, abrís <strong>Noticias</strong>, completás título, fecha, foto y texto, y guardás. En un minuto la noticia está online.</p><h2>Opción 2: el chat</h2><p>Le escribís a Claude algo como <em>“subí una noticia sobre el taller del sábado, te paso las fotos”</em>. Claude redacta, ordena las imágenes, carga la noticia y la publica.</p><p>Las dos vías escriben en el mismo lugar, así que podés usar una, la otra o las dos según el día.</p>",
+    "videos": [],
+    "galeria": []
+  },
+  {
+    "slug": "campana-de-reels-marcas-con-proposito",
+    "titulo": "Lanzamos nuestra campaña de reels para marcas con propósito",
+    "fecha": "2026-10-15",
+    "categoria": "Proyectos",
+    "destacada": false,
+    "portada": "img/noticias/campana-reels.jpg",
+    "bajada": "Un formato pensado para que tu marca cuente lo que hace en piezas cortas, con guion, rodaje y edición en un mismo equipo.",
+    "cuerpo": "<p>Los reels son hoy la puerta de entrada a tu marca. Por eso armamos un servicio que va de la idea a la publicación: definimos los temas, escribimos los guiones, filmamos y editamos.</p><p>Acá abajo te dejamos un video de muestra para ver cómo se ve un video embebido dentro de una noticia.</p><p>https://www.youtube.com/watch?v=aqz-KE-bpKQ</p><p>Cada campaña tiene su propio equipo, armado según lo que tu marca necesita contar.</p>",
+    "videos": [],
+    "galeria": [
+      "img/noticias/galeria-1.jpg",
+      "img/noticias/galeria-2.jpg",
+      "img/noticias/galeria-3.jpg"
+    ]
+  },
+  {
+    "slug": "taller-contar-tu-proyecto-en-30-segundos",
+    "titulo": "Taller abierto: contá tu proyecto en 30 segundos",
+    "fecha": "2026-10-08",
+    "categoria": "Agenda",
+    "destacada": false,
+    "portada": "img/noticias/taller-30-segundos.jpg",
+    "bajada": "Un encuentro práctico para emprendedores y organizaciones que quieren explicar lo que hacen de forma clara y rápida.",
+    "cuerpo": "<p>Vamos a trabajar en grupos chicos, con ejercicios de escritura y de cámara. La idea es que te vayas con un pitch de 30 segundos listo para usar en redes, eventos o reuniones.</p><ul><li>Duración: 3 horas</li><li>Cupo: 20 personas</li><li>Traé tu celular cargado</li></ul><p>Si querés sumarte, escribinos desde la sección de contacto.</p>",
+    "videos": [
+      "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+    ],
+    "galeria": []
+  },
+  {
+    "slug": "nuevo-sitio-para-una-escuela",
+    "titulo": "Un sitio nuevo para una escuela: cómo lo pensamos",
+    "fecha": "2026-09-30",
+    "categoria": "Proyectos",
+    "destacada": false,
+    "portada": "img/noticias/escuela-nuevo-sitio.jpg",
+    "bajada": "Del recorrido de las familias a la sección de inscripción: las decisiones detrás de una web institucional que se puede actualizar sin depender de nadie.",
+    "cuerpo": "<p>Empezamos por escuchar a quienes usan el sitio todos los días: familias que buscan información de inscripción, docentes que quieren mostrar proyectos y el equipo de comunicación que necesita publicar rápido.</p><h2>Lo que priorizamos</h2><p>Una portada simple, una sección de novedades fácil de actualizar y un formulario de contacto que llega directo al equipo.</p><img src=\"img/noticias/galeria-2.jpg\" alt=\"Composición gráfica con formas de colores\"><p>El resultado es un sitio liviano, rápido y que la escuela puede mantener sola.</p>",
+    "videos": [],
+    "galeria": []
+  }
+]

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Empujadora · Sitio de prueba</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sitio de prueba de La Empujadora para cargar noticias desde Pages CMS o desde un chat con Claude.">
+<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="La Empujadora, ir al inicio">
+      <img src="assets/img/logo-mark.svg" alt="" width="34" height="37">
+      <span>la empujadora</span>
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#home" data-section="home" aria-current="true">Home</a>
+      <a href="#noticias" data-section="noticias">Noticias</a>
+      <a href="#contacto" data-section="contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <div class="hero-frame">
+        <svg class="hero-burst" viewBox="0 0 100 100" aria-hidden="true"><polygon fill="currentColor" points="50,2 56.21,26.82 74,8.43 66.97,33.03 91.57,26 73.18,43.79 98,50 73.18,56.21 91.57,74 66.97,66.97 74,91.57 56.21,73.18 50,98 43.79,73.18 26,91.57 33.03,66.97 8.43,74 26.82,56.21 2,50 26.82,43.79 8.43,26 33.03,33.03 26,8.43 43.79,26.82"/></svg>
+        <div>
+          <p class="label kicker">Sitio de prueba · Noticias autogestionables</p>
+          <h1 class="display">
+            <span>Cargás</span>
+            <span class="c-blue">la noticia.</span>
+            <span>Nosotros</span>
+            <span class="c-green">empujamos.</span>
+          </h1>
+        </div>
+        <div class="hero-side">
+          <div class="hero-pills">
+            <span class="pill">Pages CMS</span>
+            <span class="pill">Claude directo</span>
+          </div>
+          <p>Este sitio prueba dos formas de actualizar la sección de noticias sin tocar el diseño: un panel con formulario y un chat con Claude.</p>
+          <div class="hero-ctas">
+            <a class="btn" href="#noticias">Ver noticias
+              <svg viewBox="0 0 120 80" aria-hidden="true"><polyline points="14,12 54,40 14,68" fill="none" stroke="currentColor" stroke-width="16"/><polyline points="58,12 98,40 58,68" fill="none" stroke="currentColor" stroke-width="16"/></svg>
+            </a>
+            <a class="btn btn--light" href="#contacto">Charlemos</a>
+          </div>
+        </div>
+        <svg class="hero-path" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 150 5, 300 55, 450 30 S 750 5, 900 35 S 1100 50, 1200 20"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section id="noticias" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label kicker">Lo que está pasando</p>
+          <h2 class="display">Noticias</h2>
+          <p>Todo lo que ves acá sale de un solo archivo de datos. Se actualiza desde el panel o pidiéndoselo a Claude.</p>
+        </div>
+        <div id="news-filters" class="filters" aria-label="Filtrar por categoría"></div>
+      </div>
+      <div id="news-grid" class="news-grid" aria-live="polite">
+        <p class="loading">Cargando noticias…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO SE EDITA -->
+  <section class="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div>
+        <p class="label kicker c-green">Para el equipo</p>
+        <h2 id="how-title" class="display">Dos formas de cargar una noticia</h2>
+      </div>
+      <div class="how-grid">
+        <article class="how-card">
+          <p class="label">Opción 1</p>
+          <h3 class="heading">Desde el panel</h3>
+          <p>Entrás a Pages CMS, abrís <strong>Noticias</strong>, completás título, fecha, foto, texto y video, y guardás. En un minuto está publicada.</p>
+        </article>
+        <article class="how-card">
+          <p class="label">Opción 2</p>
+          <h3 class="heading">Desde el chat</h3>
+          <p>Le escribís a Claude: <em>“subí una noticia sobre el taller del sábado, te paso las fotos y el link del video”</em>. Claude redacta, carga y publica.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contact">
+    <div class="wrap">
+      <div class="contact-intro">
+        <p class="label c-green">Contacto</p>
+        <h2 class="display">¡Charlemos!</h2>
+        <p>Contanos qué querés hacer y armamos el equipo para empujarlo juntos.</p>
+        <div class="contact-data">
+          <p class="label">Web</p>
+          <a href="https://www.laempujadora.com.ar" target="_blank" rel="noopener">www.laempujadora.com.ar</a>
+        </div>
+        <div class="contact-data">
+          <p class="label">Dónde estamos</p>
+          <span>Buenos Aires · Mar del Plata</span>
+        </div>
+      </div>
+      <form id="contact-form" class="form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-nombre">Nombre</label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="tu@mail.com">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-tema">¿Sobre qué querés hablar?</label>
+          <select id="f-tema" name="tema">
+            <option>Un proyecto nuevo</option>
+            <option>Redes y contenidos</option>
+            <option>Sitio web</option>
+            <option>Otra cosa</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-mensaje">Mensaje</label>
+          <textarea id="f-mensaje" name="mensaje" required placeholder="Contanos en pocas líneas"></textarea>
+        </div>
+        <button class="btn" type="submit">Enviar mensaje</button>
+        <p id="contact-ok" class="form-ok" role="status" hidden></p>
+        <p class="form-note">Formulario de prueba: todavía no envía mensajes.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <img src="assets/img/logo-mark.svg" alt="" width="34" height="37">
+      <span>la empujadora</span>
+    </a>
+    <p>Sitio de prueba con contenido de ejemplo · Noticias editables desde Pages CMS o Claude</p>
+  </div>
+</footer>
+
+<script src="assets/js/noticias.js"></script>
+</body>
+</html>

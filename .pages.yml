@@ -1,0 +1,96 @@
+# Configuración de Pages CMS (https://pagescms.org)
+# Define el formulario que ve el equipo al cargar noticias.
+# El sitio lee todo desde data/noticias.json: no hace falta tocar el HTML.
+
+media:
+  input: img/noticias
+  output: /img/noticias
+
+settings:
+  # Conserva campos que no estén en este formulario (por ejemplo, si Claude agrega alguno)
+  content: true
+  commit:
+    templates:
+      update: "Noticias: actualización desde Pages CMS"
+
+content:
+  - name: noticias
+    label: Noticias
+    type: file
+    path: data/noticias.json
+    format: json
+    list: true
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+
+      - name: slug
+        label: Dirección de la noticia (opcional)
+        type: string
+        description: "Se usa en el link, ej. taller-de-octubre. Solo minúsculas, números y guiones. Si lo dejás vacío se arma solo a partir del título."
+        pattern:
+          regex: "^[a-z0-9-]*$"
+          message: "Usá solo minúsculas, números y guiones."
+
+      - name: fecha
+        label: Fecha
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: categoria
+        label: Categoría
+        type: select
+        description: "Para sumar categorías nuevas, agregalas en este archivo (.pages.yml)."
+        options:
+          values:
+            - name: Novedades
+              label: Novedades
+            - name: Proyectos
+              label: Proyectos
+            - name: Agenda
+              label: Agenda
+
+      - name: destacada
+        label: Mostrar como destacada en la portada
+        type: boolean
+        default: false
+
+      - name: portada
+        label: Imagen de portada
+        type: image
+        description: "Horizontal, idealmente 1600 × 1000 px."
+
+      - name: bajada
+        label: Bajada
+        type: text
+        description: "Una o dos oraciones. Se ve en la tarjeta del listado y arriba de la noticia."
+
+      - name: cuerpo
+        label: Texto de la noticia
+        type: rich-text
+        description: "Podés sumar títulos, listas e imágenes. Para meter un video en el medio del texto, pegá el link de YouTube solo en un párrafo."
+        options:
+          format: html
+
+      - name: videos
+        label: Videos de YouTube (al final de la noticia)
+        type: string
+        list: true
+        description: "Pegá el link completo, ej. https://www.youtube.com/watch?v=..."
+
+      - name: galeria
+        label: Galería de fotos
+        type: image
+        options:
+          multiple:
+            max: 12
+
+      - name: publicada
+        label: Publicada
+        type: boolean
+        default: true
+        description: "Destildá para ocultarla del sitio sin borrarla."
