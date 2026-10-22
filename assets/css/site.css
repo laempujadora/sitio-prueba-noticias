@@ -287,6 +287,43 @@ a { color: inherit; }
 .more { border-top: 2px solid var(--black); margin-top: clamp(2.5rem, 6vw, 4rem); padding-top: clamp(2rem, 5vw, 3rem); }
 .more .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+/* ---- Buscador --------------------------------------------------------- */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.site-header .wrap { flex-wrap: wrap; }
+.nav { margin-left: auto; }
+.nav-search, .news-search { position: relative; display: flex; align-items: center; min-width: 0; }
+.nav-search svg, .news-search svg { position: absolute; left: 0.8rem; width: 1.05rem; height: 1.05rem; pointer-events: none; color: var(--black); }
+.nav-search input, .news-search input {
+  font: inherit; color: var(--black); background: var(--white);
+  border: 2px solid var(--black); border-radius: 999px; width: 100%;
+  padding: 0.5rem 0.9rem 0.5rem 2.3rem; transition: box-shadow 160ms, border-color 160ms;
+}
+.nav-search input { font-size: 0.85rem; width: 12.5rem; }
+.nav-search input:focus, .news-search input:focus { outline: none; box-shadow: var(--pop); border-color: var(--blue); }
+.nav-search input::placeholder, .news-search input::placeholder { color: var(--ink-50); }
+.search-toggle {
+  display: none; width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 2px solid var(--black);
+  background: var(--white); color: var(--black); cursor: pointer; place-items: center; padding: 0;
+}
+.search-toggle svg { width: 1.1rem; height: 1.1rem; }
+.search-toggle[aria-expanded="true"] { background: var(--black); color: var(--white); }
+
+.news-tools { display: grid; gap: 0.75rem; justify-items: end; min-width: 0; }
+.news-search { width: min(100%, 22rem); }
+.news-search input { font-size: 1rem; padding-block: 0.7rem; }
+.news-status { margin: -0.75rem 0 1.5rem; color: var(--ink-70); }
+.news-status strong { color: var(--black); }
+.link-btn { font: inherit; font-weight: 700; color: var(--blue); background: none; border: 0; padding: 0; margin-left: 0.5rem; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .nav-search { display: none; }
+  .search-toggle { display: grid; }
+  .site-header.search-open .nav-search { display: flex; order: 10; flex-basis: 100%; }
+  .site-header.search-open .nav-search input { width: 100%; }
+  .news-tools { justify-items: stretch; width: 100%; }
+  .news-search { width: 100%; }
+}
+
 /* ---- Responsive ------------------------------------------------------- */
 @media (max-width: 900px) {
   .hero-frame { grid-template-columns: minmax(0, 1fr); }

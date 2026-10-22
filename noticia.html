@@ -21,6 +21,12 @@
       <a href="index.html#noticias" aria-current="true">Noticias</a>
       <a href="index.html#contacto">Contacto</a>
     </nav>
+    <form class="nav-search" role="search" data-buscador-form action="index.html">
+      <label class="sr-only" for="nav-search">Buscar noticias</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <input id="nav-search" name="q" type="search" placeholder="Buscar noticias" autocomplete="off" data-buscador>
+    </form>
+    <button type="button" class="search-toggle" aria-expanded="false" aria-controls="nav-search" aria-label="Abrir buscador"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
   </div>
 </header>
 
