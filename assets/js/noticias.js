@@ -162,21 +162,78 @@
   }
 
   /* ---- listado (home) -------------------------------------------------- */
+  /* Texto para buscar: sin tildes, sin mayúsculas, sin HTML */
+  function plano(s) {
+    return String(s || '').replace(/<[^>]*>/g, ' ').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+  function coincide(n, q) {
+    var palabras = plano(q).split(/\s+/).filter(Boolean);
+    if (!palabras.length) return true;
+    var texto = n._busqueda || (n._busqueda = plano([n.titulo, n.bajada, n.categoria, n.cuerpo].join(' ')));
+    return palabras.every(function (p) { return texto.indexOf(p) >= 0; });
+  }
+
   function initListado() {
     var grid = document.getElementById('news-grid');
     if (!grid) return;
     var filtros = document.getElementById('news-filters');
+    var estado = document.getElementById('news-status');
+    var inputs = Array.prototype.slice.call(document.querySelectorAll('input[data-buscador]'));
+    var consulta = new URLSearchParams(location.search).get('q') || '';
+    inputs.forEach(function (i) { i.value = consulta; });
+
     cargar().then(function (todas) {
       if (!todas.length) { grid.innerHTML = '<p class="empty">Todavía no hay noticias publicadas.</p>'; return; }
       var cats = [];
       todas.forEach(function (n) { if (n.categoria && cats.indexOf(n.categoria) < 0) cats.push(n.categoria); });
       var actual = '';
+
       function pintar() {
-        var lista = actual ? todas.filter(function (n) { return n.categoria === actual; }) : todas;
-        var dest = actual ? null : (lista.filter(function (n) { return n.destacada; })[0] || lista[0]);
+        var q = consulta.trim();
+        var lista = todas.filter(function (n) { return (!actual || n.categoria === actual) && coincide(n, q); });
+        if (estado) {
+          estado.hidden = !q;
+          estado.innerHTML = q ? (lista.length === 1 ? '1 noticia' : lista.length + ' noticias') + ' con <strong>“' + esc(q) + '”</strong>' + (actual ? ' en ' + esc(actual) : '') +
+            ' <button type="button" class="link-btn" data-limpiar>Borrar búsqueda</button>' : '';
+        }
+        if (!lista.length) {
+          grid.innerHTML = '<div class="empty"><p>No encontramos noticias con esa búsqueda.</p><p>Probá con otra palabra o elegí <strong>Todas</strong>.</p></div>';
+          return;
+        }
+        var dest = (actual || q) ? null : (lista.filter(function (n) { return n.destacada; })[0] || lista[0]);
         var resto = lista.filter(function (n) { return n !== dest; });
         grid.innerHTML = (dest ? tarjeta(dest, true) : '') + resto.map(function (n) { return tarjeta(n, false); }).join('');
       }
+
+      function buscar(valor, origen) {
+        consulta = valor;
+        inputs.forEach(function (i) { if (i !== origen) i.value = valor; });
+        try {
+          var u = new URL(location.href);
+          if (valor.trim()) u.searchParams.set('q', valor.trim()); else u.searchParams.delete('q');
+          history.replaceState(null, '', u.pathname + u.search + u.hash);
+        } catch (e) {}
+        pintar();
+      }
+
+      inputs.forEach(function (i) {
+        i.addEventListener('input', function () { buscar(i.value, i); });
+      });
+      document.querySelectorAll('form[data-buscador-form]').forEach(function (f) {
+        f.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var i = f.querySelector('input[data-buscador]');
+          buscar(i.value, i);
+          var sec = document.getElementById('noticias');
+          if (sec && f.closest('.site-header')) sec.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+      if (estado) estado.addEventListener('click', function (e) {
+        if (!e.target.closest('[data-limpiar]')) return;
+        buscar('', null);
+        var i = document.getElementById('news-search'); if (i) i.focus();
+      });
+
       if (filtros && cats.length > 1) {
         filtros.innerHTML = ['<button type="button" data-cat="" aria-pressed="true">Todas</button>']
           .concat(cats.map(function (c) { return '<button type="button" data-cat="' + esc(c) + '" aria-pressed="false">' + esc(c) + '</button>'; })).join('');
@@ -188,8 +245,31 @@
         });
       }
       pintar();
+      if (consulta && location.hash === '#noticias') {
+        var sec = document.getElementById('noticias'); if (sec) sec.scrollIntoView();
+      }
     }).catch(function () {
       grid.innerHTML = '<p class="empty">No pudimos cargar las noticias. Si abriste el archivo directo desde tu computadora, probalo desde un servidor (por ejemplo, ya publicado en Cloudflare Pages).</p>';
+    });
+  }
+
+  /* Buscador del menú: en el detalle de una noticia lleva al listado con la búsqueda hecha */
+  function initBuscadorMenu() {
+    var header = document.querySelector('.site-header');
+    if (!header) return;
+    var toggle = header.querySelector('.search-toggle');
+    var input = header.querySelector('input[data-buscador]');
+    if (toggle && input) toggle.addEventListener('click', function () {
+      var abierto = header.classList.toggle('search-open');
+      toggle.setAttribute('aria-expanded', String(abierto));
+      if (abierto) input.focus();
+    });
+    if (document.getElementById('news-grid')) return;
+    var form = header.querySelector('form[data-buscador-form]');
+    if (form) form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = input.value.trim();
+      location.href = 'index.html' + (q ? '?q=' + encodeURIComponent(q) : '') + '#noticias';
     });
   }
 
@@ -277,6 +357,6 @@
     links.forEach(function (a) { var s = document.getElementById(a.getAttribute('data-section')); if (s) io.observe(s); });
   }
 
-  function init() { initListado(); initDetalle(); initContacto(); initNav(); }
+  function init() { initBuscadorMenu(); initListado(); initDetalle(); initContacto(); initNav(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
