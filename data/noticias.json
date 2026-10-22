@@ -1,10 +1,23 @@
 [
   {
+    "titulo": "Boca volvió: le ganó a Vasco en el Maracaná y está en la final",
+    "slug": "boca-vuelve-a-una-final",
+    "fecha": "2026-10-22",
+    "categoria": "Novedades",
+    "destacada": true,
+    "portada": "/img/noticias/boca-vuelve-a-una-final.jpg",
+    "bajada": "Después de tres años difíciles, el Xeneize dio vuelta la serie en Brasil y vuelve a jugar una final continental. Lo espera Barranquilla el 21 de noviembre.",
+    "cuerpo": "<p>Fueron tres años sin rumbo: varios cambios de entrenador, ninguna clasificación a la Libertadores y un Riquelme cada vez más cuestionado por la misma hinchada que lo había puesto en lo más alto. Con Arruabarrena llegaron la calma y el orden que el equipo venía pidiendo, y sobre todo las ganas de volver a sentirse grande en Argentina y en Sudamérica.</p><h2>La noche del Maracaná</h2><p>Boca llegaba con todo en contra: el 0-1 de la ida y una racha de 11 partidos sin ganar, en el mismo estadio donde perdió la final de la Libertadores 2023. Parecía que otra vez iba a quedar afuera frente al dominio brasileño. Pero los mejores aparecieron cuando más hacía falta.</p><p>Di Lollo, Merentiel y Paredes firmaron la remontada. El último gol fue del capitán, que venía de recuperarse de una lesión y cerró una noche histórica.</p><blockquote>Tres años después, Boca vuelve a jugar una final.</blockquote><h2>Lo que viene</h2><p>La final se juega el 21 de noviembre en el Estadio Metropolitano Roberto Meléndez de Barranquilla. El rival sale de la otra semifinal, entre Torque y Atlético Mineiro.</p><p>Después de un gran 2026, Boca se siente otra vez el orgullo del fútbol argentino, en un momento en el que River no atraviesa su mejor presente.</p><p>Fuente: <a href=\"https://as.com/futbol/internacional/maracanazo-y-a-la-final-f202610-n/\">AS</a>.</p>",
+    "videos": [],
+    "galeria": [],
+    "publicada": true
+  },
+  {
     "slug": "esta-web-se-actualiza-sola",
     "titulo": "Esta web se actualiza sola: probamos Pages CMS y Claude",
     "fecha": "2026-10-21",
     "categoria": "Novedades",
-    "destacada": true,
+    "destacada": false,
     "portada": "img/noticias/cms-y-claude.jpg",
     "bajada": "Armamos este sitio para probar dos formas de cargar noticias sin tocar código: un panel con formulario y un chat con Claude que publica por vos.",
     "cuerpo": "<p>Cada noticia que ves acá sale de un solo archivo de datos. El diseño no se toca: lo que cambia es el contenido, y se puede cargar de dos maneras.</p><h2>Opción 1: el panel</h2><p>Entrás a Pages CMS con tu cuenta, abrís <strong>Noticias</strong>, completás título, fecha, foto y texto, y guardás. En un minuto la noticia está online.</p><h2>Opción 2: el chat</h2><p>Le escribís a Claude algo como <em>“subí una noticia sobre el taller del sábado, te paso las fotos”</em>. Claude redacta, ordena las imágenes, carga la noticia y la publica.</p><p>Las dos vías escriben en el mismo lugar, así que podés usar una, la otra o las dos según el día.</p>",
