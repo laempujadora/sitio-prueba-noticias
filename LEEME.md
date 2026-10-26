@@ -4,6 +4,8 @@ Sitio estático con tres secciones (Home, Noticias, Contacto) y una página de d
 Todas las noticias salen de `data/noticias.json`. El HTML no se toca para cargar contenido.
 
 ```
+admin/                Panel de noticias propio (/admin)
+worker/               API del panel: login y guardado en GitHub
 index.html            Home + listado de noticias + contacto
 noticia.html          Detalle de cada noticia (noticia.html?n=<slug>)
 data/noticias.json    El contenido (lo único que cambia)
@@ -43,6 +45,25 @@ CLAUDE.md             Reglas para que Claude edite noticias sin romper nada
    - "Ocultá la noticia de la campaña de reels."
    - Pegarle un mail o un PDF y pedirle: "Convertí esto en una noticia".
 4. Claude trabaja en una rama, te pasa la URL de vista previa de Cloudflare y publica cuando le confirmás.
+
+## 5. Panel propio (/admin)
+
+Un panel con la marca del sitio para cargar, editar, ocultar y borrar noticias, con login por contraseña.
+Cada vez que se guarda, el panel escribe en GitHub y Cloudflare publica solo.
+
+Configuración (una sola vez):
+
+1. **Clave de GitHub.** En GitHub → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token.
+   - Repository access: **Only select repositories** → este repo.
+   - Permissions → Repository permissions → **Contents: Read and write**.
+   - Expiración: la que prefieras (al vencer hay que generar otra y reemplazarla).
+2. **Cargar los secretos en Cloudflare.** Worker → Settings → **Variables and Secrets** → Add:
+   - `GITHUB_TOKEN` (tipo Secret): la clave del paso 1.
+   - `ADMIN_PASSWORD` (tipo Secret): la contraseña del panel, larga y difícil.
+   - `GITHUB_REPO` y `GITHUB_BRANCH` ya vienen en `wrangler.jsonc`.
+3. Entrar a `/admin` en el sitio y loguearse.
+
+Para un cliente con dominio propio conviene sumar **Cloudflare Access** (login por mail con código) delante de `/admin` y `/api`.
 
 ## Probarlo en tu compu
 

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de noticias · la empujadora</title>
+<link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body class="panel">
+
+<header class="site-header panel-header">
+  <div class="wrap">
+    <a class="brand" href="/admin/" aria-label="Panel de noticias">
+      <img src="/assets/img/logo-mark.svg" alt="" width="34" height="37">
+      <span>la empujadora</span>
+    </a>
+    <p class="label panel-tag">Panel de noticias</p>
+    <nav class="nav panel-nav" aria-label="Panel">
+      <a href="/" target="_blank" rel="noopener">Ver sitio</a>
+      <button type="button" id="btn-salir" class="nav-btn" hidden>Salir</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap panel-main">
+
+  <!-- Cargando -->
+  <section id="vista-cargando" class="panel-loading" aria-live="polite">
+    <p>Cargando el panel…</p>
+  </section>
+
+  <!-- Sin configurar -->
+  <section id="vista-config" class="panel-card panel-narrow" hidden>
+    <p class="label c-blue">Falta un paso</p>
+    <h1 class="display">El panel todavía no está configurado</h1>
+    <p>Para que funcione, hay que cargar en Cloudflare la contraseña del panel y la clave de GitHub. Los pasos están en el archivo <strong>LEEME.md</strong> del repo, en la sección “Panel propio”.</p>
+  </section>
+
+  <!-- Login -->
+  <section id="vista-login" class="panel-card panel-narrow" hidden>
+    <p class="label c-blue">Acceso del equipo</p>
+    <h1 class="display">Entrá al panel</h1>
+    <p>Desde acá cargás, editás y ocultás las noticias del sitio. Los cambios se publican solos en uno o dos minutos.</p>
+    <form id="form-login" class="panel-form" novalidate>
+      <div class="field">
+        <label for="login-pass">Contraseña</label>
+        <input id="login-pass" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <p id="login-error" class="panel-error" role="alert" hidden></p>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <!-- Listado -->
+  <section id="vista-lista" hidden>
+    <div class="panel-top">
+      <div>
+        <p class="label c-blue">Noticias del sitio</p>
+        <h1 class="display">Tus noticias</h1>
+      </div>
+      <button type="button" class="btn" id="btn-nueva">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        Nueva noticia
+      </button>
+    </div>
+    <div class="panel-toolbar">
+      <div class="news-search">
+        <label class="sr-only" for="lista-buscar">Buscar en el panel</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <input id="lista-buscar" type="search" placeholder="Buscar por título" autocomplete="off">
+      </div>
+      <p id="lista-resumen" class="panel-summary"></p>
+    </div>
+    <ul id="lista" class="panel-list" aria-live="polite"></ul>
+  </section>
+
+  <!-- Editor -->
+  <section id="vista-editor" hidden>
+    <button type="button" class="back" id="btn-volver">
+      <svg class="chev" viewBox="0 0 120 80" aria-hidden="true"><polyline points="14,12 54,40 14,68" fill="none" stroke="currentColor" stroke-width="16"/><polyline points="58,12 98,40 58,68" fill="none" stroke="currentColor" stroke-width="16"/></svg>
+      Volver a la lista
+    </button>
+    <h1 id="editor-titulo" class="display editor-heading">Nueva noticia</h1>
+
+    <form id="form-noticia" class="editor-grid" novalidate>
+      <div class="editor-main">
+        <div class="field">
+          <label for="f-titulo">Título</label>
+          <input id="f-titulo" type="text" maxlength="160" required placeholder="Ej.: Abrimos la inscripción 2027">
+        </div>
+        <div class="field">
+          <label for="f-bajada">Bajada <span class="hint" id="bajada-cuenta">0 / 400</span></label>
+          <textarea id="f-bajada" maxlength="400" rows="3" placeholder="Una o dos oraciones que resumen la noticia. Se ve en la tarjeta del listado."></textarea>
+        </div>
+
+        <div class="field">
+          <span class="field-label" id="lbl-cuerpo">Texto de la noticia</span>
+          <div class="rte" role="group" aria-labelledby="lbl-cuerpo">
+            <div class="rte-bar" role="toolbar" aria-label="Formato del texto">
+              <button type="button" data-cmd="h2" title="Subtítulo">Subtítulo</button>
+              <button type="button" data-cmd="p" title="Párrafo normal">Párrafo</button>
+              <span class="rte-sep" aria-hidden="true"></span>
+              <button type="button" data-cmd="bold" title="Negrita"><strong>N</strong></button>
+              <button type="button" data-cmd="italic" title="Cursiva"><em>C</em></button>
+              <button type="button" data-cmd="ul" title="Lista con viñetas">• Lista</button>
+              <button type="button" data-cmd="quote" title="Cita destacada">“ Cita</button>
+              <button type="button" data-cmd="link" title="Agregar link">Link</button>
+              <span class="rte-sep" aria-hidden="true"></span>
+              <button type="button" data-cmd="img" title="Insertar foto en el texto">+ Foto</button>
+              <button type="button" data-cmd="video" title="Insertar video de YouTube en el texto">+ Video</button>
+            </div>
+            <div id="f-cuerpo" class="rte-area prose" contenteditable="true" aria-labelledby="lbl-cuerpo" aria-multiline="true"></div>
+            <div id="rte-pop" class="rte-pop" hidden>
+              <label id="rte-pop-label" for="rte-pop-input">Link</label>
+              <input id="rte-pop-input" type="url" placeholder="https://">
+              <div class="rte-pop-actions">
+                <button type="button" class="btn btn--sm" id="rte-pop-ok">Agregar</button>
+                <button type="button" class="link-btn" id="rte-pop-cancel">Cancelar</button>
+              </div>
+            </div>
+          </div>
+          <p class="hint">Pegá texto de un mail o un documento: se limpia el formato solo.</p>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Galería de fotos <span class="hint">(se ve al final de la noticia)</span></span>
+          <div id="galeria" class="thumbs"></div>
+          <label class="drop drop--small" for="f-galeria">
+            <input id="f-galeria" type="file" accept="image/*" multiple>
+            <span><strong>Sumar fotos</strong> · podés elegir varias</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Videos de YouTube <span class="hint">(se ven al final de la noticia)</span></span>
+          <div id="videos" class="videos-list"></div>
+          <button type="button" class="link-btn" id="btn-video">+ Agregar video</button>
+        </div>
+      </div>
+
+      <aside class="editor-side">
+        <div class="side-card">
+          <div class="field">
+            <label for="f-fecha">Fecha</label>
+            <input id="f-fecha" type="date" required>
+          </div>
+          <div class="field">
+            <label for="f-categoria">Categoría</label>
+            <select id="f-categoria">
+              <option>Novedades</option>
+              <option>Proyectos</option>
+              <option>Agenda</option>
+            </select>
+          </div>
+          <label class="switch" for="f-publicada">
+            <input id="f-publicada" type="checkbox" checked>
+            <span class="switch-ui" aria-hidden="true"></span>
+            <span><strong>Publicada</strong><br><small>Si la apagás, queda guardada pero no se ve en el sitio.</small></span>
+          </label>
+          <label class="switch" for="f-destacada">
+            <input id="f-destacada" type="checkbox">
+            <span class="switch-ui" aria-hidden="true"></span>
+            <span><strong>Destacada</strong><br><small>Va grande arriba de todo. Solo puede haber una.</small></span>
+          </label>
+        </div>
+
+        <div class="side-card">
+          <span class="field-label">Foto de portada</span>
+          <div id="portada" class="cover"></div>
+          <label class="drop" for="f-portada">
+            <input id="f-portada" type="file" accept="image/*">
+            <span><strong>Elegir foto</strong><br><small>Horizontal. La achicamos sola antes de subirla.</small></span>
+          </label>
+        </div>
+
+        <div class="side-actions">
+          <p id="editor-error" class="panel-error" role="alert" hidden></p>
+          <button type="submit" class="btn" id="btn-guardar">Guardar y publicar</button>
+          <button type="button" class="btn btn--light" id="btn-cancelar">Cancelar</button>
+        </div>
+      </aside>
+    </form>
+  </section>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<input id="f-imgcuerpo" type="file" accept="image/*" hidden>
+
+<script src="/assets/js/admin.js"></script>
+</body>
+</html>

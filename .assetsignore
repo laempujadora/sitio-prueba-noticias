@@ -6,3 +6,5 @@ wrangler.jsonc
 .git
 .wrangler
 node_modules
+worker
+.dev.vars
