@@ -1,10 +1,18 @@
-// Configuración de Cloudflare: sitio estático servido desde la raíz del repo.
+// Configuración de Cloudflare: sitio estático + API del panel de noticias.
 {
   "name": "sitio-prueba-noticias",
+  "main": "worker/index.js",
   "compatibility_date": "2025-09-01",
   "assets": {
     "directory": "./",
-    "not_found_handling": "none"
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    // Solo /api/* pasa por el código del panel; el resto se sirve directo como archivos.
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "GITHUB_REPO": "laempujadora/sitio-prueba-noticias",
+    "GITHUB_BRANCH": "main"
   },
   // Necesario para las vistas previas por rama (npx wrangler preview)
   "previews": {}

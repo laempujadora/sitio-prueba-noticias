@@ -13,7 +13,7 @@ No sos el diseñador del sitio: el diseño ya está hecho y no se toca.
 
 ## Qué NO podés tocar
 
-- `index.html`, `noticia.html`, `assets/` (CSS, JS, fuentes, logo) y `.pages.yml`.
+- `index.html`, `noticia.html`, `assets/` (CSS, JS, fuentes, logo), `.pages.yml`, `admin/` (panel de noticias), `worker/` (API del panel) y `wrangler.jsonc`.
 - Si te piden un cambio de diseño, de estructura o de otra sección, no lo hagas:
   respondé que eso lo resuelve La Empujadora y sugerí escribirles.
 
@@ -52,6 +52,8 @@ Reglas de cada campo:
 - **videos**: lista de links de YouTube que se muestran al final. Puede quedar vacía `[]`.
 - **galeria**: lista de rutas de imágenes. Puede quedar vacía `[]`.
 - **publicada**: `false` para ocultar una noticia sin borrarla.
+
+El equipo también puede cargar noticias desde el panel (`/admin`). Escribe en el mismo archivo con el mismo formato, así que antes de editar traé siempre la última versión de `main`.
 
 El orden en el archivo no importa: el sitio ordena por fecha, de la más nueva a la más vieja.
 
